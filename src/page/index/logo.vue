@@ -1,16 +1,17 @@
 <template>
+  <!-- logo页面左上角秋集管理后台 -->
   <div class="avue-logo">
     <transition name="fade">
       <span v-if="keyCollapse"
             class="avue-logo_subtitle"
             key="0">
-        {{website.logo}}
+        {{website.logo}}      
       </span>
     </transition>
     <transition-group name="fade">
       <template v-if="!keyCollapse">
         <span class="avue-logo_title"
-              key="1">{{website.indexTitle}} </span>
+               key="1">{{website.indexTitle}} </span>   <!--对应文件website的indextitle -->
       </template>
     </transition-group>
   </div>
@@ -25,7 +26,7 @@ export default {
   },
   created() {},
   computed: {
-    ...mapGetters(["website", "keyCollapse"])
+     ...mapGetters(["website", "keyCollapse"])  // keycollapse 在getters.js
   },
   methods: {}
 };

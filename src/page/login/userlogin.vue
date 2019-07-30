@@ -6,6 +6,7 @@
            :model="loginForm"
            label-width="0">
     <el-form-item prop="username">
+      <!-- .native 才能监听原生事件 修饰符 -->
       <el-input size="small"
                 @keyup.enter.native="handleLogin"
                 v-model="loginForm.username"

@@ -5,7 +5,7 @@ import errorCode from '@/const/errorCode'
 import router from "@/router/router"
 import {Message} from 'element-ui'
 import 'nprogress/nprogress.css'
-import store from "@/store"; // progress bar style
+import store from "@/store"; // 进度条样式
 axios.defaults.timeout = 30000
 // 返回其他状态吗
 axios.defaults.validateStatus = function (status) {

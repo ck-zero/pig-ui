@@ -22,7 +22,9 @@ export function fetchList (query) {
     url: '/admin/user/page',
     method: 'get',
     params: query
-  })
+
+  }
+  )
 }
 
 export function addObj (obj) {

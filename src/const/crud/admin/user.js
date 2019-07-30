@@ -95,7 +95,6 @@ export const tableOption = {
     label: '手机号',
     prop: 'phone',
     type: 'phone',
-    search: true,
     value: '',
     span: 24,
     rules: [{

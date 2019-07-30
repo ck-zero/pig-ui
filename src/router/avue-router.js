@@ -126,6 +126,7 @@ RouterPlugin.install = function (router, store) {
                 name: name,
                 meta: meta,
                 path: 'index'
+                
               }]
             }
             return []

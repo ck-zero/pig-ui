@@ -98,6 +98,8 @@
 
 <script>
   import {addObj, delObj, fetchList, getObj, putObj} from "@/api/admin/user";
+  import {deptRoleList} from "@/api/admin/role";
+  import {fetchTree} from "@/api/admin/dept";
   import {tableOption} from '@/const/crud/admin/user';
   import {mapGetters} from "vuex";
   import {constants} from 'fs';
@@ -143,7 +145,7 @@
       this.sys_user_add = this.permissions["sys_user_add"];
       this.sys_user_edit = this.permissions["sys_user_edit"];
       this.sys_user_del = this.permissions["sys_user_del"];
-      this.init();
+      // this.init();
     },
     methods: {
       getList(page, params) {

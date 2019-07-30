@@ -1,4 +1,6 @@
 // code/index.vue  净收益  
+
+import { getDetails } from '@/api/admin/user'
 var validateUsername = (rule, value, callback) => {
   getDetails(value).then(response => {
     if (window.boxType === 'edit') callback()
@@ -12,25 +14,25 @@ var validateUsername = (rule, value, callback) => {
 }
 
 export const tabletwo = {
-    border: true,
-    index: false,
-    indexLabel: '编号',
-    stripe: true,
-    menuAlign: 'center',
-    editBtn: false,
-    delBtn: false,
-    align: 'center',
-    addBtn: false,
+    border: true,                  //表格的是否显示边框
+    index: false,                  //表格是否显示序号 
+    indexLabel: '编号',             //序号名称
+    stripe: true,                   //是否显示表格的斑马条纹
+    menuAlign: 'center',            //菜单栏对齐方式  
+    editBtn: false,                 //编辑按钮
+    delBtn: false,                  //删除按钮隐藏false
+    align: 'center',                //对其方式居中
+    addBtn: false,                  //添加按钮
     column: [ {
-      fixed: true,
-      label: '货号',
-      prop: 'phone',
-      type: 'phone',
-      search: true,
+      fixed: true,                  //是否冻结列        
+      label: '货号',                //表格标题  
+      prop: 'phone',                //表格的key
+      type: 'phone',                //类型  
+      search: true,                 //搜索显示
       searchTip:'搜索货号',
       searchTipPlacement:"buttom",      
       value: '',
-      span: 24,
+      span: 24,                     //表单格栅显示的列
       rules: [{
         min: 6,
         max: 20,
@@ -86,7 +88,7 @@ export const tabletwo = {
       }]
     }, {
       label: '会员价',
-      prop: 'role',
+      prop: 'deptId',
       value: '',
       span: 24,
       rules: [{

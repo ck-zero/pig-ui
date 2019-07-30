@@ -47,6 +47,9 @@ const user = {
   },
   actions: {
     // 根据用户名登录
+    //v.1.1.5 版本以后对前端登录的密码进行前端的AES 加密，保证数据安全性
+    //检测 加密KEY 是否修改
+    //若是修改，请对应pig-ui 中的加密key,必须是16位
     LoginByUsername({commit}, userInfo) {
       const user = encryption({
         data: userInfo,

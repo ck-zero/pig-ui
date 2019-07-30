@@ -1,38 +1,26 @@
-<!--
-  -    Copyright (c) 2018-2025, lengleng All rights reserved.
-  -
-  - Redistribution and use in source and binary forms, with or without
-  - modification, are permitted provided that the following conditions are met:
-  -
-  - Redistributions of source code must retain the above copyright notice,
-  - this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-  - notice, this list of conditions and the following disclaimer in the
-  - documentation and/or other materials provided with the distribution.
-  - Neither the name of the pig4cloud.com developer nor the names of its
-  - contributors may be used to endorse or promote products derived from
-  - this software without specific prior written permission.
-  - Author: lengleng (wangiegie@gmail.com)
-  -->
-
 <template>
   <div class="user">
     <basic-container>
+      <!-- ref  定义组件的名称和给元素注册引用信息  -->
+      <!-- refresh-change	点击刷新按钮触发该事件 -->
+      <!-- search-change搜索触发事件按钮 -->
+      <!-- page页码 -->
+      <!-- option:数据 -->
+      <!-- on-load返回数据的事件 -->
+      <!-- :data返回数据的存储的空数组 -->
+      <!-- table-loading加载 -->
       <avue-crud
         :option="option"
-        ref="crud"
+        ref="crud"      
         v-model="form"
         :page="page"
         @on-load="getList"
         :table-loading="listLoading"
         @search-change="handleFilter"
         @refresh-change="handleRefreshChange"
-        @row-update="update"
-        @row-save="create"
-        :before-open="handleOpenBefore"
         :data="list"
       >
-        <template slot="menuLeft">
+        <!-- <template slot="menuLeft">
           <el-button
             v-if="sys_user_add"
             class="filter-item"
@@ -41,7 +29,7 @@
             type="primary"
             icon="el-icon-edit"
           >添加</el-button>
-        </template>
+        </template>-->
 
         <template slot="username" slot-scope="scope">
           <span>{{scope.row.username}}</span>
@@ -64,16 +52,16 @@
             v-if="sys_user_edit"
             size="small"
             type="text"
-            icon="icon-bijia"
+            icon="el-icon-edit"
             @click="handlecode()"
           >比价</el-button>
-          <el-button
+        <!-- <el-button
             v-if="sys_user_del"
             size="small"
             type="text"
             icon="el-icon-delete"
             @click="deletes(scope.row,scope.index)"
-          >删除</el-button>
+          >删除</el-button>-->
         </template>
 
         <template slot="roleForm" slot-scope="scope">
@@ -130,8 +118,9 @@ export default {
   computed: {
     ...mapGetters(["permissions"])
   },
-  watch: {
+  watch: { //响应role的变化
     role() {
+      console.log(this.role)
       this.form.role = this.role;
     }
   },
@@ -139,12 +128,10 @@ export default {
     this.sys_user_add = this.permissions["sys_user_add"];
     this.sys_user_edit = this.permissions["sys_user_edit"];
     this.sys_user_del = this.permissions["sys_user_del"];
-    this.init();
+    // this.init();
   },
   methods: {
-    getList(page, params) {
-      console.log(JSON.stringify(page));
-      console.log(JSON.stringify(params));
+    getList(page, param) {
       this.listLoading = true;
       fetchList(
         Object.assign(
@@ -152,116 +139,122 @@ export default {
             current: page.currentPage,
             size: page.pageSize
           },
-          params
+          param   //uname phone
         )
       ).then(response => {
-        console.log(response.data.data.records);
-        this.list = response.data.data.records;
-        this.page.total = response.data.data.total;
-        this.listLoading = false;
+        this.list = response.data.data.records;           //返回表格数据保存在list空数组中
+        this.page.total = response.data.data.total;      //分页的页数页条
+        this.listLoading = false;                        //表格的显示与不显示
       });
+    
     },
-    getNodeData(data) {
-      deptRoleList().then(response => {
-        this.rolesOptions = response.data.data;
-      });
-    },
-    handleDept() {
-      fetchTree().then(response => {
-        this.treeDeptData = response.data.data;
-      });
-    },
+    // getNodeData(data) {
+    //   deptRoleList().then(response => {
+    //     this.rolesOptions = response.data.data;        角色的数据    无视
+    //   });
+    // },
+    // handleDept() {
+    //   fetchTree().then(response => {
+    //     this.treeDeptData = response.data.data;        部门的数据    无视
+    //   });
+    // },
+
+    //搜索
     handleFilter(param) {
-      this.page.page = 1;
+      this.page.page = 1;         
       this.getList(this.page, param);
     },
+
+    //刷新按钮
     handleRefreshChange() {
       this.getList(this.page);
     },
-    handleCreate() {
-      this.$refs.crud.rowAdd();
-    },
-    handleOpenBefore(show, type) {
-      window.boxType = type;
-      this.handleDept();
-      if (["edit", "views"].includes(type)) {
-        this.role = [];
-        for (var i = 0; i < this.form.roleList.length; i++) {
-          this.role[i] = this.form.roleList[i].roleId;
-        }
-        deptRoleList().then(response => {
-          this.rolesOptions = response.data.data;
-        });
-      } else if (type === "add") {
-        this.role = [];
-      }
-      show();
-    },
+
+    // handleCreate() {                    添加按钮   无视        :before-open="handleOpenBefore"
+    //   this.$refs.crud.rowAdd();
+    // },
+    // handleOpenBefore(show, type) {
+    //   window.boxType = type;
+    //   this.handleDept();
+    //   if (["edit", "views"].includes(type)) {
+    //     this.role = [];
+    //     for (var i = 0; i < this.form.roleList.length; i++) {
+    //       this.role[i] = this.form.roleList[i].roleId;
+    //     }
+    //     deptRoleList().then(response => {
+    //       this.rolesOptions = response.data.data;
+    //     });
+    //   } else if (type === "add") {
+    //     this.role = [];
+    //   }
+    //   show();
+    // },
+
     handlecode() {
-      this.$router.push({ name: "price" });
+      this.$router.push({ path: "/code_info" });
     },
-    create(row, done, loading) {
-      addObj(this.form)
-        .then(() => {
-          this.getList(this.page);
-          done();
-          this.$notify({
-            title: "成功",
-            message: "创建成功",
-            type: "success",
-            duration: 2000
-          });
-        })
-        .catch(() => {
-          loading();
-        });
-    },
-    update(row, index, done, loading) {
-      putObj(this.form)
-        .then(() => {
-          this.getList(this.page);
-          done();
-          this.$notify({
-            title: "成功",
-            message: "修改成功",
-            type: "success",
-            duration: 2000
-          });
-        })
-        .catch(() => {
-          loading();
-        });
-    },
-    deletes(row, index) {
-      this.$confirm(
-        "此操作将永久删除该用户(用户名:" + row.username + "), 是否继续?",
-        "提示",
-        {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        }
-      ).then(() => {
-        delObj(row.userId)
-          .then(() => {
-            this.list.splice(index, 1);
-            this.$notify({
-              title: "成功",
-              message: "删除成功",
-              type: "success",
-              duration: 2000
-            });
-          })
-          .cache(() => {
-            this.$notify({
-              title: "失败",
-              message: "删除失败",
-              type: "error",
-              duration: 2000
-            });
-          });
-      });
-    }
+    // create(row, done, loading) {            @row-update="update"     @row-save="create"
+    //   addObj(this.form)
+    //     .then(() => {
+    //       this.getList(this.page);
+    //       done();
+    //       this.$notify({
+    //         title: "成功",
+    //         message: "创建成功",
+    //         type: "success",
+    //         duration: 2000
+    //       });
+    //     })
+    //     .catch(() => {
+    //       loading();
+    //     });
+    // },
+    // update(row, index, done, loading) {
+    //   putObj(this.form)
+    //     .then(() => {
+    //       this.getList(this.page);
+    //       done();
+    //       this.$notify({
+    //         title: "成功",
+    //         message: "修改成功",
+    //         type: "success",
+    //         duration: 2000
+    //       });
+    //     })
+    //     .catch(() => {
+    //       loading();
+    //     });
+    // },
+    // deletes(row, index) {
+    //   this.$confirm(
+    //     "此操作将永久删除该用户(用户名:" + row.username + "), 是否继续?",
+    //     "提示",
+    //     {
+    //       confirmButtonText: "确定",
+    //       cancelButtonText: "取消",
+    //       type: "warning"
+    //     }
+    //   ).then(() => {
+    //     delObj(row.userId)
+    //       .then(() => {
+    //         this.list.splice(index, 1);
+    //         this.$notify({
+    //           title: "成功",
+    //           message: "删除成功",
+    //           type: "success",
+    //           duration: 2000
+    //         });
+    //       })
+    //       .cache(() => {
+    //         this.$notify({
+    //           title: "失败",
+    //           message: "删除失败",
+    //           type: "error",
+    //           duration: 2000
+    //         });
+    //       });
+    //   });
+    // }
   }
 };
 </script>

@@ -15,8 +15,19 @@ export default [{
     redirect: '/info/index',
     children: [{
         path: 'index',
-        name: '比价',
+        name: '个人信息',
         component: () =>
             import ( /* webpackChunkName: "page" */ '@/views/admin/user/info'),
+    }]
+},
+{
+    path: '/code_info',
+    component: Layout,
+    redirect: '/code_info/index',
+    children: [{
+        path: 'index',
+        name: '比价',
+        component: () =>
+            import ( /* webpackChunkName: "page" */ '@/views/admin/code/code_info'),
     }]
 }]

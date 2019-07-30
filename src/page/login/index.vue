@@ -4,7 +4,7 @@
     <div class="login-weaper  animated bounceInDown">
       <div class="login-left">
         <img class="img"
-             src="/img/logo.png"
+             src="/img/sz1.png"
              alt="">
         <p class="title">{{website.infoTitle}}</p>
         <p>©2019 v2.2.0</p>
