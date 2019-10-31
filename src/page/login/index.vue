@@ -7,7 +7,7 @@
              src="/img/sz1.png"
              alt="">
         <p class="title">{{website.infoTitle}}</p>
-        <p>©2019 v2.2.0</p>
+        <p>{{code}}</p>
       </div>
       <div class="login-border">
         <div class="login-main">
@@ -32,11 +32,21 @@
     },
     data() {
       return {
-        activeName: "user"
+        activeName: "user",
+        code:""
       };
     },
     watch: {},
     created() {
+            let nowDate = new Date();
+            let date = { 
+            year: nowDate.getFullYear(),
+            month: nowDate.getMonth() + 1,
+            date: nowDate.getDate(),
+            }
+          
+            let systemDate = date.year + '年'  + date.month + '月'+ date.date +"日";
+            this.code=systemDate;
     },
     mounted() {
     },
@@ -44,7 +54,9 @@
       ...mapGetters(["website"])
     },
     props: [],
-    methods: {}
+    methods: {
+
+    }
   };
 </script>
 

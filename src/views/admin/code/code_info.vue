@@ -42,7 +42,6 @@ export default {
     this.sys_user_add = this.permissions["sys_user_add"];
     this.sys_user_edit = this.permissions["sys_user_edit"];
     this.sys_user_del = this.permissions["sys_user_del"];
-    // this.init();
   },
   methods: {
     getList() {

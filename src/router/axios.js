@@ -13,6 +13,7 @@ axios.defaults.validateStatus = function (status) {
 }
 // 跨域请求，允许保存cookie
 axios.defaults.withCredentials = true
+// Vue.http.options.credentials = true
 // NProgress Configuration
 NProgress.configure({
   showSpinner: false
@@ -37,7 +38,7 @@ axios.interceptors.request.use(config => {
 })
 
 
-// HTTPresponse拦截
+// 响应的拦截器
 axios.interceptors.response.use(res => {
   NProgress.done()
   const status = Number(res.status) || 200

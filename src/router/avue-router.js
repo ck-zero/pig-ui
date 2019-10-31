@@ -99,7 +99,6 @@ RouterPlugin.install = function (router, store) {
             // 判断是否为首路由
             if (first) {
               require(['../page/index'], resolve)
-
               // 判断是否为多层路由
             } else if (isChild && !first) {
               require(['../page/index/layout'], resolve)

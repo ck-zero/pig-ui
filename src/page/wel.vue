@@ -1,35 +1,9 @@
 <template>
   <div>
-    <basic-container>
+    <basic-container >
       <div class="banner-text">
         <span>
-          <a href="https://avue.top/#/pay" target="_blank">
-            <img src="https://img.shields.io/badge/PigX-升级版-green.svg" alt="Build Status">
-          </a>
-          <img src="https://img.shields.io/badge/Spring%20Boot-2.1.2.RELEASE-yellowgreen.svg" alt="Downloads">
-          <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.RELEASE-blue.svg" alt="Coverage Status">
-        </span>
-        <br/>
-        <span>
-          <el-collapse v-model="activeNames">
-            <el-collapse-item title="PigX 完整的微服务架构" name="1">
-              <div>基于Spring Cloud Greenwich.RELEASE</div>
-              <div>基于Spring Boot 2.1.2.RELEASE</div>
-            </el-collapse-item>
-            <el-collapse-item title="PigX 完美的容器化支持" name="2">
-              <div>支持docker部署</div>
-              <div>支持Rancher2 + Kubernetes部署</div>
-            </el-collapse-item>
-            <el-collapse-item title="PigX 最终一致性分布式事务" name="3">
-              <div>基于开源LCN 分布式事务解决方案深度定制</div>
-              <div>完美兼容2.X，优化集群部署，提升性能</div>
-            </el-collapse-item>
-            <el-collapse-item title="其他功能" name="4">
-              <div>SAAS多租户</div>
-              <div>Activiti工作流</div>
-              <div><a href="https://pig4cloud.com/#/vip" target="_blank">详细介绍pigx </a></div>
-            </el-collapse-item>
-          </el-collapse>
+        欢迎来到秋田管理后台~~~
         </span>
       </div>
 
@@ -108,6 +82,10 @@
 </script>
 
 <style scoped="scoped" lang="scss">
+.el-card__body {
+    padding: 421px !important;
+}
+ 
   .wel-contailer {
     position: relative;
   }
@@ -118,6 +96,14 @@
     font-size: 20px;
     text-align: center;
     color: #333;
+  }
+  .banner-text span{
+    display: block;
+    // height: 800px;
+    color:#0f0;
+    padding-top:22rem;
+    padding-bottom:26rem;
+
   }
 
   .banner-img {

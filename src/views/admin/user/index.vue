@@ -1,95 +1,73 @@
-<!--
-  -    Copyright (c) 2018-2025, lengleng All rights reserved.
-  -
-  - Redistribution and use in source and binary forms, with or without
-  - modification, are permitted provided that the following conditions are met:
-  -
-  - Redistributions of source code must retain the above copyright notice,
-  - this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-  - notice, this list of conditions and the following disclaimer in the
-  - documentation and/or other materials provided with the distribution.
-  - Neither the name of the pig4cloud.com developer nor the names of its
-  - contributors may be used to endorse or promote products derived from
-  - this software without specific prior written permission.
-  - Author: lengleng (wangiegie@gmail.com)
-  -->
-
 <template>
   <div class="user">
     <basic-container>
       <avue-crud :option="option"
-                 ref="crud"
-                 v-model="form"
-                 :page="page"
-                 @on-load="getList"
-                 :table-loading="listLoading"
-                 @search-change="handleFilter"
-                 @refresh-change="handleRefreshChange"
-                 @row-update="update"
-                 @row-save="create"
-                 :before-open="handleOpenBefore"
-                 :data="list">
-        <template slot="menuLeft">
+                  ref="crud"
+                  v-model="form"
+                  :page="page"
+                  @on-load="getList"
+                  :table-loading="listLoading"
+                  @search-change="handleFilter"
+                  @refresh-change="handleRefreshChange"
+                  @row-update="update"
+                  @row-save="create"
+                  :before-open="handleOpenBefore"
+                  :data="list">
+      <template slot="menuLeft">
           <el-button v-if="sys_user_add"
-                     class="filter-item"
-                     @click="handleCreate"
-                     size="small"
-                     type="primary"
-                     icon="el-icon-edit">添加
+                class="filter-item"
+                @click="handleCreate"
+                size="small"
+                type="primary"
+                icon="el-icon-edit">添加
           </el-button>
-        </template>
-        <template slot="username"
-                  slot-scope="scope">
-          <span>{{scope.row.username}}</span>
-        </template>
-        <template slot="role"
-                  slot-scope="scope">
-              <span v-for="(role,index) in scope.row.roleList"
-                    :key="index">
-                <el-tag>{{role.roleName}} </el-tag>&nbsp;&nbsp;
-              </span>
-        </template>
-        <template slot="deptId"
-                  slot-scope="scope">
-          {{scope.row.deptName}}
-        </template>
-        <template slot="lockFlag"
-                  slot-scope="scope">
-          <el-tag>{{scope.label}}</el-tag>
-        </template>
-        <template slot="menu"
-                  slot-scope="scope">
-          <el-button v-if="sys_user_edit"
-                     size="small"
-                     type="text"
-                     icon="el-icon-edit"
-                     @click="handleUpdate(scope.row,scope.index)">编辑
-          </el-button>
-          <el-button v-if="sys_user_del"
-                     size="small"
-                     type="text"
-                     icon="el-icon-delete"
-                     @click="deletes(scope.row,scope.index)">删除
-          </el-button>
-        </template>
-        <template slot="deptIdForm"
-                  slot-scope="scope">
+      </template>
+      <template slot="username" slot-scope="scope">
+            <span>{{scope.row.username}}</span>
+      </template>
+      <template slot="role" slot-scope="scope">
+            <span v-for="(role,index) in scope.row.roleList"
+            :key="index">
+            <el-tag>{{role.roleName}} </el-tag>&nbsp;&nbsp;
+            </span>
+      </template>
+      <template slot="deptId" slot-scope="scope">
+             {{scope.row.deptName}}
+      </template>
+      <template slot="lockFlag" slot-scope="scope">
+             <el-tag>{{scope.label}}</el-tag>
+      </template>
+
+      <template slot="menu" slot-scope="scope">
+      <el-button v-if="sys_user_edit"
+      size="small"
+      type="text"
+      icon="el-icon-edit"
+      @click="handleUpdate(scope.row,scope.index)">编辑
+      </el-button>
+      <el-button v-if="sys_user_del"
+      size="small"
+      type="text"
+      icon="el-icon-delete"
+      @click="deletes(scope.row,scope.index)">删除
+      </el-button>
+      </template>
+
+      <template slot="deptIdForm" slot-scope="scope">
           <avue-crud-input v-model="form.deptId"
-                           type="tree"
-                           placeholder="请选择所属部门"
-                           :node-click="getNodeData"
-                           :dic="treeDeptData"
-                           :props="defaultProps"></avue-crud-input>
-        </template>
-        <template slot="roleForm"
-                  slot-scope="scope">
+          type="tree"
+          placeholder="请选择所属部门"
+          :node-click="getNodeData"
+          :dic="treeDeptData"
+          :props="defaultProps"></avue-crud-input>
+      </template>
+      <template slot="roleForm" slot-scope="scope">
           <avue-crud-select v-model="role"
-                            multiple
-                            placeholder="请选择角色"
-                            :dic="rolesOptions"
-                            :props="roleProps"></avue-crud-select>
-        </template>
+          multiple
+          placeholder="请选择角色"
+          :dic="rolesOptions"
+          :props="roleProps"></avue-crud-select>
+      </template>
       </avue-crud>
     </basic-container>
   </div>
@@ -159,19 +137,19 @@
           this.listLoading = false;
         });
       },
-      getNodeData(data) {
+      getNodeData(data) {    //添加中所属部门
         deptRoleList().then(response => {
           this.rolesOptions = response.data.data;
         });
       },
-      handleDept() {
+      handleDept() {    //添加按钮
         fetchTree().then(response => {
           this.treeDeptData = response.data.data;
         });
       },
-      handleFilter(param) {
+      handleFilter(form) {
         this.page.page = 1;
-        this.getList(this.page, param);
+        this.getList(this.page, form);
       },
       handleRefreshChange() {
         this.getList(this.page)

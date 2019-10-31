@@ -4,6 +4,7 @@ import ViewsRouter from './views/'
 import AvueRouter from './avue-router'
 import Store from '../store/'
 let Router = new VueRouter({
+  // mode: 'history',
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition

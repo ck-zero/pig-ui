@@ -30,4 +30,6 @@ export default [{
         component: () =>
             import ( /* webpackChunkName: "page" */ '@/views/admin/code/code_info'),
     }]
-}]
+},
+
+]

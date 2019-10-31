@@ -1,157 +1,8 @@
 
-export const data=[       
-        {
-           id:1,
-           name:'张三',
-           username:'禾木有限公司',
-           phone1:"1101",
-           phone:"1423212135",
-           test:'1994-02-23 00:00:00'
-         }, {
-           id:2,
-           name:'李四',
-           username:'悦和有限公司',
-           phone1:"1101",
-           phone:"15201547885",
-           test:'1994-02-23 00:00:00'
-         }, {
-           id:3,
-           name:'老五',
-           username:'树叶有限公司',
-           phone1:"1101",
-           phone:"1652453215",
-           test:'1994-02-23 00:00:00'
-         }, {
-           id:4,
-           name:'杨六',
-           username:'广东飞跃有限公司',
-           phone1:"1101",
-           phone:"14752254588",
-           test:'1994-02-23 00:00:00'
-         },{
-            id:5,
-            name:'荤七',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:6,
-            name:'王八',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:7,
-            name:'飞九',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:8,
-            name:'小白',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:9,
-            name:'小花',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:10,
-            name:'小黑',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:11,
-            name:'小绿',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:12,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:13,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:14,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:15,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:16,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:17,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:18,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:19,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:20,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          },{
-            id:21,
-            name:'蔡徐坤',
-            username:'广东飞跃有限公司',
-            phone1:"1101",
-            phone:"14752254588",
-            test:'1994-02-23 00:00:00'
-          }]
-
 export const tableOption = {
+    menuWidth:180,
     border: true,                       //表格的是否显示边框
-    index: true,                        //表格是否显示序号 
+    index: false,                        //表格是否显示序号 
     indexLabel: '序号',
     stripe: true,                       //是否显示表格的斑马条纹
     menuAlign: 'center',
@@ -164,26 +15,52 @@ export const tableOption = {
     delBtn: false,
     addBtn: false,                  //添加按钮不显示
     column: [{
-      label: 'id',
-      prop: 'id',
+      width: 150,      //表格宽度
+      label: 'id',     //表格头的名称
+      prop: 'id',     //服务器传来的字段
     }, {
+      width: 150,
       label: '姓名',
       prop: 'name',
     }, {
       label: '公司名称',
-      prop: 'username',
-    //   'search': true,
+      prop: 'supName',
+      search: true,    //搜索框
+      searchTip:'输入公司名称',   //搜索提示框
     }, {
+      width: 150,
       label: '公司编号',
-      prop: 'phone1',
+      prop: 'supcustNo',
+      dialogModal:true,
     }, {
       label: '电话',
-      width: 150,
       prop: 'phone',
     }, {
       label: '创建时间',
-      prop: 'test'
-    }],
-  
-  }
-  
+      prop: 'createDate',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm:ss',      //过滤时间
+      valueFormat: "yyyy-MM-dd HH:mm:ss",  
+      dialogModal:true,
+      span: 24
+    },
+    {
+      label: '状态',
+      prop: 'status',
+      type: 'select',  //什么类型
+      dicData:[{       //过滤
+        label:"未授权",
+        value:0
+      },{
+        label:"已授权",
+        value:1
+      },{
+        label:"已拒绝",
+        value:2
+      },{
+        label:"已锁定",
+        value:9
+      }]
+    }
+  ],
+} 

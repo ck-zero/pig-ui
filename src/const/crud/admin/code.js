@@ -23,7 +23,7 @@ export const tabletwo = {
     delBtn: false,                  //删除按钮隐藏false
     align: 'center',                //对其方式居中
     addBtn: false,                  //添加按钮
-    column: [ {
+    column: [ {                     //配置去加载对象注入进去
       fixed: true,                  //是否冻结列        
       label: '货号',                //表格标题  
       prop: 'phone',                //表格的key

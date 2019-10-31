@@ -120,7 +120,6 @@ export default {
   },
   watch: { //响应role的变化
     role() {
-      console.log(this.role)
       this.form.role = this.role;
     }
   },
@@ -148,16 +147,6 @@ export default {
       });
     
     },
-    // getNodeData(data) {
-    //   deptRoleList().then(response => {
-    //     this.rolesOptions = response.data.data;        角色的数据    无视
-    //   });
-    // },
-    // handleDept() {
-    //   fetchTree().then(response => {
-    //     this.treeDeptData = response.data.data;        部门的数据    无视
-    //   });
-    // },
 
     //搜索
     handleFilter(param) {
@@ -170,91 +159,11 @@ export default {
       this.getList(this.page);
     },
 
-    // handleCreate() {                    添加按钮   无视        :before-open="handleOpenBefore"
-    //   this.$refs.crud.rowAdd();
-    // },
-    // handleOpenBefore(show, type) {
-    //   window.boxType = type;
-    //   this.handleDept();
-    //   if (["edit", "views"].includes(type)) {
-    //     this.role = [];
-    //     for (var i = 0; i < this.form.roleList.length; i++) {
-    //       this.role[i] = this.form.roleList[i].roleId;
-    //     }
-    //     deptRoleList().then(response => {
-    //       this.rolesOptions = response.data.data;
-    //     });
-    //   } else if (type === "add") {
-    //     this.role = [];
-    //   }
-    //   show();
-    // },
-
+    //跳转按钮
     handlecode() {
       this.$router.push({ path: "/code_info" });
     },
-    // create(row, done, loading) {            @row-update="update"     @row-save="create"
-    //   addObj(this.form)
-    //     .then(() => {
-    //       this.getList(this.page);
-    //       done();
-    //       this.$notify({
-    //         title: "成功",
-    //         message: "创建成功",
-    //         type: "success",
-    //         duration: 2000
-    //       });
-    //     })
-    //     .catch(() => {
-    //       loading();
-    //     });
-    // },
-    // update(row, index, done, loading) {
-    //   putObj(this.form)
-    //     .then(() => {
-    //       this.getList(this.page);
-    //       done();
-    //       this.$notify({
-    //         title: "成功",
-    //         message: "修改成功",
-    //         type: "success",
-    //         duration: 2000
-    //       });
-    //     })
-    //     .catch(() => {
-    //       loading();
-    //     });
-    // },
-    // deletes(row, index) {
-    //   this.$confirm(
-    //     "此操作将永久删除该用户(用户名:" + row.username + "), 是否继续?",
-    //     "提示",
-    //     {
-    //       confirmButtonText: "确定",
-    //       cancelButtonText: "取消",
-    //       type: "warning"
-    //     }
-    //   ).then(() => {
-    //     delObj(row.userId)
-    //       .then(() => {
-    //         this.list.splice(index, 1);
-    //         this.$notify({
-    //           title: "成功",
-    //           message: "删除成功",
-    //           type: "success",
-    //           duration: 2000
-    //         });
-    //       })
-    //       .cache(() => {
-    //         this.$notify({
-    //           title: "失败",
-    //           message: "删除失败",
-    //           type: "error",
-    //           duration: 2000
-    //         });
-    //       });
-    //   });
-    // }
+   
   }
 };
 </script>
