@@ -3,7 +3,7 @@
     <basic-container >
       <div class="banner-text">
         <span>
-        欢迎来到秋田管理后台~~~
+          欢迎来到秋田运营平台
         </span>
       </div>
 

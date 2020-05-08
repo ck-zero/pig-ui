@@ -1,5 +1,5 @@
 <template>
-  <!-- logo页面左上角秋集管理后台 -->
+  <!-- logo页面左上角秋田集运营平台 -->
   <div class="avue-logo">
     <transition name="fade">
       <span v-if="keyCollapse"

@@ -22,17 +22,36 @@
                  @search-change="handleFilter"
                  @search-reset="hondleno"
                  @row-save="settle">
+        <template slot="supcustName" slot-scope="scope" >
+          <span>{{scope.row.supcustName}}</span>
+        </template>
+        <template slot-scope="scope" slot="menuLeft">
+            <el-button type="primary"
+            icon="el-icon-plus"
+            size="small"
+            plain
+            v-if="sys_settle_add"
+            @click.stop="handleCreate()">新增</el-button>
+        </template>
         <template slot-scope="scope" slot="menu">
+          <!-- <el-button type="text" 
+                     icon="el-icon-plus"
+                     size="mini"
+                     v-if="sys_settle_lok"
+                     >
+            查看
+          </el-button> -->
           <el-button type="text"
                      icon="el-icon-check"
                      size="mini"
+                     v-if="sys_settle_edit"
                      @click="handleEdit(scope.row,scope.index)">
                      修改
           </el-button>
         </template>
         <template slot="search" > 
-            <el-form-item label="供应商名称" >
-              <el-input  placeholder="请输入供应商名称" v-model="form.supcustName"  clearable/>
+            <el-form-item label="公司名称" >
+              <el-input  placeholder="请输入公司名称" v-model="form.supcustName"  clearable/>
             </el-form-item>
         </template>
       </avue-crud>
@@ -61,11 +80,16 @@ data() {
       },
       tableLoading: false,          //加载
       tableOption: tableOption,     //表格头
-      treeDeptData:[]
+      treeDeptData:[],
+      sys_settle_lok:false,
+      sys_settle_edit:false,
+      sys_settle_add:false,
     }
 },
 created() {
-
+  this.sys_settle_lok=this.permissions["sys_settle_lok"]
+  this.sys_settle_edit=this.permissions["sys_settle_edit"]
+  this.sys_settle_add=this.permissions["sys_settle_add"]
 },
 mounted: function () {
 
@@ -97,7 +121,9 @@ getList(page, params) {
  * @detail 调用crud的handleadd方法即可
  *
  **/
-
+handleCreate:function(){
+    this.$refs.crud.rowAdd();
+},
 
 //新增按钮添加
 settle:function(row,done,loading){
@@ -125,7 +151,7 @@ handleEdit(row, index,code) {
   this.$refs.crud.rowEdit(row, index,code);
 },
 
-// //编辑数据后确定触发该事件
+//编辑数据后确定触发该事件
 update(row, index, done, loading){
     putObj(this.form).then((res) => {
         this.getList(this.page);
@@ -153,7 +179,7 @@ refreshChange(){
 },
 
 hondleno(){
-  this.supcustName="我被请了";
+  this.supcustName="";
   console.log("我被清空了")
 },
 

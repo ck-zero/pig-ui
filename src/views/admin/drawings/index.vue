@@ -28,15 +28,23 @@
           </el-button>
         </template>       
         <template slot-scope="scope" slot="menu">
+          <!-- <el-button type="text" 
+                     icon="el-icon-plus"
+                     size="mini"
+                     v-if="sys_drawings_lok">
+            查看
+          </el-button> -->
           <el-button type="text" 
                      icon="el-icon-check"
                      size="mini"
+                     v-if="sys_drawings_add"
                      :disabled="scope.row.status == 1 || scope.row.status == 2"
                      @click="handleEdit(scope.row,scope.index)">同意
           </el-button>
           <el-button type="text"
                      icon="el-icon-delete"
                      size="mini"
+                     v-if="sys_drawings_edit"
                      :disabled="scope.row.status ==2 || scope.row.status == 1"
                      @click="handleDel(scope.row,scope.index)">拒绝
           </el-button>
@@ -64,13 +72,20 @@ data() {
         },
         tableLoading: false,        //加载
         tableOption: tableOption,   //表格头信息
+        sys_drawings_lok:false,
+        sys_drawings_add:false,
+        sys_drawings_edit:false,
+
     }
 },
 created() {
 
 },
 mounted: function () {
-
+    this.sys_drawings_lok=this.permissions["sys_drawings_lok"]
+    this.sys_drawings_add=this.permissions["sys_drawings_add"]
+    this.sys_drawings_edit=this.permissions["sys_drawings_edit"]
+    
 },
 
 computed: {

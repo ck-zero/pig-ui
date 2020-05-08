@@ -22,7 +22,8 @@ export const tableOption = {
   searchSize: 'mini',
   editBtn: false,
   delBtn: false,
-  addBtn: true,                  //添加按钮不显示
+  viewBtn:true,     //查看按钮
+  addBtn: false,                  //添加按钮不显示
   column: [
     {
       width:100,
@@ -33,12 +34,10 @@ export const tableOption = {
     },
     {
       width: 220,           //表格宽度
-      label: '供应商名称',      //表格头的名称
+      label: '公司名称',      //表格头的名称
       prop: 'supcustNo',        //服务器传来的字段
       slot:true,
-      // formsolt: true,
       type:"select",
-      // remote:true,
       props:{
         res:"result",
         label:"supName",
@@ -46,7 +45,7 @@ export const tableOption = {
       },
       dicUrl:`${baseUrl}`,
       dicMethod:"get",
-      placeholder:"请选择供应商名称",
+      placeholder:"请选择公司名称",
       filterable:true,
       labelWidth:140,       //编辑左边字体的宽度
     },
@@ -139,11 +138,6 @@ export const tableOption = {
     label:"备注",
     prop:"remarks",
     type:"textarea",
-    rules:[{
-      required:true,
-      message:"请留下你的备注",
-      trigger:"blur"
-    }],
     labelWidth:140
   },
   {

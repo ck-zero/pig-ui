@@ -14,6 +14,7 @@ export const tableOption = {
     editBtn: false,
     delBtn: false,
     addBtn: false,                  //添加按钮不显示
+    viewBtn:true,     //查看按钮
     menu:false,
     column: [ {
       label: '编号',

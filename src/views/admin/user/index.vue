@@ -134,6 +134,8 @@
         }, params)).then(response => {
           this.list = response.data.data.records;
           this.page.total = response.data.data.total
+          this.page.currentPage=response.data.data.current;  //当前页
+          this.page.pageSize=response.data.data.size;        //显示多少条
           this.listLoading = false;
         });
       },

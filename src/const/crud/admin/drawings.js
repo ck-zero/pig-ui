@@ -13,6 +13,7 @@ export const tableOption = {
     searchSize: 'mini',
     editBtn: false,
     delBtn: false,
+    viewBtn:true,     //查看按钮
     addBtn: false,                  //添加按钮不显示
     column: [{
       label: 'id',

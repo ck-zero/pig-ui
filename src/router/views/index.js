@@ -31,5 +31,15 @@ export default [{
             import ( /* webpackChunkName: "page" */ '@/views/admin/code/code_info'),
     }]
 },
-
+// {
+//     path: '/goBack',
+//     component: Layout,
+//     redirect: '/goBack/index',
+//     children: [{
+//         path: 'index',
+//         name: '详情页',
+//         component: () =>
+//             import ( /* webpackChunkName: "page" */ '@/views/admin/putaway/goBack'),
+//     }]
+// },
 ]

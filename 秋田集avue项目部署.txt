@@ -1,0 +1,91 @@
+﻿pig项目的开发
+
+1、https://gitee.com/log4j/pig-ui复制地址到浏览器，打开pig-ui的项目网站
+
+2、使用git命令，从pig-ui项目中克隆下来
+     ①git clone https://gitee.com/log4j/pig-ui  big-xx
+        git 克隆   项目地址  big-xx是自己定义的文件名称
+
+     ②cd big-xx
+         进入文件的目录
+  
+     ③npm install
+           安装依赖
+
+     ④npm run dev
+          运行项目
+
+
+3、文件最后有个vue.config.js文件，里面有url地址对应着后端的IP地址和端口号（全局的IP地址），文件里有：配置转发代理，里的/auth代替target里面的地址，后面组件中我们掉接口时直接用auth代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/auth/user/add’即可，配置好后就可以正常运行项目了。
+
+4、src文件里 api文件夹是axios封装请求、const文件夹里crud是表格头的信息prop是对应后端返回json数据里的渲染字段、views文件夹里是你创建的.vue文件
+
+5、创建好.vue文件后，进入运行项目 点击权限管理 - 菜单管理 - 点击添加按钮（你要在哪个位置添加文件目录就在哪里点击，按照里面的规则来添加路由就好了，前端组件是写你自己创建的.vue路径）然后刷新页面你就会看见左边菜单栏已经出现了你创建的.vue页面，如果没有就点击角色管理里的权限勾选后刷新页面出现了。
+
+6、如果不要菜单栏显示.vue文件，就在src文件里router中有views里index.js文件里配置文件路由（按照他的写法），然后在想要的页面写跳转就行，直接跳转到你创建的.vue页面
+
+7、①vue文件里的参数：		
+           <avue-crud></avue-crud> 	表格标签				 
+           ref  			定义组件的名称和给元素注册引用信息  
+           refresh-change		点击刷新按钮触发该事件 
+           search-change		搜索触发事件按钮 
+           page			页码 
+           option			:数据 
+           on-load			返回数据的事件 
+           :data			返回数据的存储的空数组 
+           table-loading		加载 
+
+—————————————————————————————————————————————————————
+
+     ②crud表格头的参数：
+  	 border: true,                	  	//表格的是否显示边框
+ 	   index: false,                 	 	//表格是否显示序号 
+  	 indexLabel: '编号',          	   	//序号名称
+  	 stripe: true,                   		//是否显示表格的斑马条纹
+     menuAlign: 'center',        	   	 //菜单栏对齐方式  
+   	 editBtn: false, 	                		//编辑按钮
+   	 delBtn: false,  	                		//删除按钮隐藏false
+   	 align: 'center',	                		//对其方式居中
+   	 addBtn: false,	                 	 //添加按钮
+     column: [ {			//包裹表格头
+    	 fixed: true,   	                 	//是否冻结列        
+       label: '货号', 	                		//表格标题  
+       prop: 'phone',	                		//表格的key
+       type: 'phone', 	               		//类型  
+       search: true, 	                		//搜索显示
+			 span: 24,                                   		//表单格栅显示的列	
+  		 format: 'yyyy-MM-dd hh:mm:ss',	//时间过滤器
+			 dicData:[{                                  		//过滤服务器传来的字段
+ 	      label:"未授权",		
+	      value:0			//prop里的数据
+	     },{
+	      label:"已同意",
+	      value:1
+	    },{
+	      label:"已拒绝",
+	      value:2
+	    }]
+	}]
+
+8、如果crud表格头的信息不懂的话请看avue.js文档：https://avuejs.com/ 和element-UI 框架，还可以加QQ群606410437（avue交流学习，不过一般他们都很忙，看运气）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

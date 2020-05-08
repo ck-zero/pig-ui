@@ -20,27 +20,36 @@
                  :option="tableOption">
         <template slot-scope="scope"
                   slot="menu">
-          <el-button type="text" 
-                     icon="el-icon-check"
+          <!-- <el-button type="text" 
+                     icon="el-icon-plus"
                      size="mini"
+                     v-if="sys_impower_lok"
+                    >查看
+          </el-button>         -->
+          <el-button type="text" 
+                     icon="el-icon-edit"
+                     size="mini"
+                     v-if="sys_impower_add"
                      :disabled="scope.row.status ==2 || scope.row.status == 1 || scope.row.status == 9"
                      @click="handleEdit(scope.row,scope.index)">授权
           </el-button>
-          <el-button type="text"       
+          <!-- <el-button type="text"       
                      icon="el-icon-delete"
                      size="mini"
+                     v-if="sys_impower_edit"
                      :disabled="scope.row.status ==2 || scope.row.status == 1 || scope.row.status == 9"
                      @click="handleDel(scope.row,scope.index)">拒绝
-          </el-button>
-                   <el-button type="text"       
-                     icon="el-icon-delete"
-                     size="mini"
-                     :disabled="scope.row.status == 9"
-                     @click="handleLock(scope.row,scope.index)">锁定
+          </el-button> -->
+          <el-button type="text"       
+            icon="el-icon-check"
+            size="mini"
+            v-if="sys_impower_eit"
+            :disabled="scope.row.status == 9"
+            @click="handleLock(scope.row,scope.index)">删除
           </el-button>
         </template>
       </avue-crud>
-      <div class="co_size">* 锁定是指拒绝后再给一次申请的机会</div>
+      <!-- <div class="co_size">* 锁定是指拒绝后再给一次申请的机会</div> -->
     </basic-container>
   </div>
 </template>
@@ -56,7 +65,6 @@ data() {
     return {
         supname:"",                 //保存supname
         tableData: [],              //空数组
-        // display:true, 
         page: {
         total: 0,                   // 总页数
         currentPage: 1,             // 当前页数
@@ -64,11 +72,18 @@ data() {
         },
         tableLoading: false,        //加载
         tableOption: tableOption,   //赋值表格头
+        sys_impower_add:false,
+        sys_impower_edit:false,
+        sys_impower_eit:false,
+        sys_impower_lok:false,
     }
 },
 
 created() {
-
+  this.sys_impower_add = this.permissions['sys_impower_add']
+  this.sys_impower_edit = this.permissions['sys_impower_edit']
+  this.sys_impower_eit = this.permissions['sys_impower_eit']
+  this.sys_impower_lok = this.permissions['sys_impower_lok']
 },
 
 mounted: function () {

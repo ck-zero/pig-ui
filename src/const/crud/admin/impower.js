@@ -13,6 +13,7 @@ export const tableOption = {
     searchSize: 'mini',
     editBtn: false,
     delBtn: false,
+    viewBtn:true,     //查看按钮
     addBtn: false,                  //添加按钮不显示
     column: [{
       width: 150,      //表格宽度
@@ -61,6 +62,9 @@ export const tableOption = {
         label:"已锁定",
         value:9
       }]
+    },{
+      label:"角色",
+      prop:"roleName",
     }
   ],
 } 

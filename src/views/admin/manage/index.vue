@@ -21,11 +21,18 @@
                  :option="tableOption"
                  @row-update="update">
         <template slot-scope="scope" slot="menu">
+          <!-- <el-button type="text" 
+                     icon="el-icon-plus"
+                     size="mini"
+                     v-if="sys_manage_lok">
+            查看
+          </el-button> -->
           <el-button type="text"
                      icon="el-icon-check"
                      size="mini"
+                     v-if="sys_manage_add"
                      @click="handleEdit(scope.row,scope.index)">
-               供应商比例
+               修改
           </el-button>
         </template>
       </avue-crud>
@@ -52,10 +59,13 @@ data() {
       },
       tableLoading: false,          //加载
       tableOption: tableOption,     //表格头
+      sys_manage_lok:false,
+      sys_manage_add:false,
     }
 },
 created() {
-
+   this.sys_manage_lok=this.permissions["sys_manage_lok"],
+   this.sys_manage_add=this.permissions["sys_manage_add"]
 },
 mounted: function () {
 

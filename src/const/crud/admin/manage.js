@@ -14,14 +14,17 @@ export const tableOption = {
     searchSize: 'mini',
     editBtn: false,
     delBtn: false,
+    viewBtn:true,     //查看按钮
     addBtn: false,                  //添加按钮不显示
     column: [{
       width: 220,
-      label: '供应商名称',
+      label: '公司名称',
       prop: 'supName',
       search: true,       //搜索框
-      searchTip:'供应商名称',
+      searchTip:'公司名称',
       labelWidth:110,
+      editVisdiplay:false,
+      // hide
     }, {
       width: 100,           //表格宽度
       label: '供应商编号',      //表格头的名称
@@ -29,28 +32,33 @@ export const tableOption = {
       editDisabled:true,    //禁用
       // span:10,          //编辑框的格式宽度
       labelWidth:110,       //编辑左边字体的宽度
+      editVisdiplay:false,
     }, {
       width:150,
       label: '助记词',
       prop: 'subNo',
       labelWidth:110,
+      editVisdiplay:false,
     }, {
       width: 150,
       label: '供应商类型',
       prop: 'supcustType',
       dialogModal:true,
       labelWidth:110,
+      editVisdiplay:false,
     }, {
       width:150,
       label: '送货周期',
       prop: 'poCycle',
       labelWidth:110,
+      editVisdiplay:false,
     }, {
       width:150,
       label: '经营方式名称',
       prop: 'salewayName',
       // span: 19
       labelWidth:110,
+      editVisdiplay:false,
     },
   {
     width:150,
@@ -58,32 +66,38 @@ export const tableOption = {
     prop: 'supLyAmt',
     // type: 'select',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 150,
     label: '结算门店名称',
     prop: 'settleBranchname',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '采购单据进价',
     prop: 'accLevel',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 150,
     label: '付款方式',
     prop: 'payWay',
     dialogModal:true,
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '结算方式',
     prop: 'checkOutFlag',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '结算周期',
     prop: 'checkOutDay',
     labelWidth:110,
+    editVisdiplay:false,
     // span: 24
   },
 {
@@ -93,16 +107,19 @@ export const tableOption = {
     labelWidth:110,
     type:"date",
     placeholder:"选择日期",
+    editVisdiplay:false,
 }, {
     width: 150,
     label: '返利类型',
     prop: 'rebateWay',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '联系人',
     prop: 'supMan',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 150,
     label: '电话',
@@ -111,10 +128,11 @@ export const tableOption = {
     labelWidth:110,
     rules: [{
       min: 6,
-      max: 11,
+      max: 12,
       message: '长度有误',
       trigger: 'blur'
     }],
+    editVisdiplay:false,
     // dicData:[{
     //   label:"NULL",
     //   value:""
@@ -124,6 +142,7 @@ export const tableOption = {
     label: '传真',
     prop: 'supFax',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '手机',
@@ -134,41 +153,48 @@ export const tableOption = {
       max: 11,
       message: '长度有误',
       trigger: 'blur'
-    }]
+    }],
+    editVisdiplay:false,
   },
 {
     width:300,  
     label: '地址',
     prop: 'supAddr',
     labelWidth:110,
-    span:20
+    span:20,
+    editVisdiplay:false,
 }, {
     width: 210,
     label: '开户银行',
     prop: 'supAcctBack',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:210,
     label: '银行账号',
     prop: 'supAcctNo',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 150,
     label: '税务登记号',
     prop: 'supTaxNo',
     dialogModal:true,
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width:150,
     label: '区域',
     prop: 'regionNo',
     labelWidth:110, 
+    editVisdiplay:false,
   }, {
     width:150,
     label: '类型',
     prop: 'supType',
     labelWidth:110,
     // span: 24,
+    editVisdiplay:false,
  
   },
 {
@@ -176,12 +202,14 @@ export const tableOption = {
     label: '冻结账款状态',
     prop: 'payFlag',
     labelWidth:110,
+    editVisdiplay:false,
 }
 , {
     width: 150,
     label: '冻结业务状态',
     prop: 'orderFlag',
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 200,
     label: '邮箱',
@@ -194,13 +222,60 @@ export const tableOption = {
       }
     ],
     labelWidth:110,
+    editVisdiplay:false,
   }, {
     width: 300,
     label: '备注',
     prop: 'memo',
     labelWidth:110,
-    span:20
-  }, {
+    span:20,
+    editVisdiplay:false,
+  }, 
+  {
+    width:150,
+    labelWidth:110,
+    label:"营业执照",
+    prop:"businessLicensCode",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"办公地址",
+    span:20,
+    prop:"registerAddr",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"客户经理",
+    prop:"accountManager",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"合作方式",
+    prop:"cooperationType",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"退货地址",
+    span:20,
+    prop:"returnAddr",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"财务对接人",
+    prop:"financeCounterpart",
+  },
+  {
+    width:150,
+    labelWidth:110,
+    label:"财务联系电话",
+    prop:"financeTel",
+  },
+  {
     width: 150,
     label: '供应商管理费率',
     labelWidth:110,

@@ -2,12 +2,12 @@ export default {
   title: '秋田',
   logo: '秋田',
   key: 'pig',   //配置主键,目前用于存储
-  indexTitle: '秋田集管理后台',
+  indexTitle: '秋田集运营平台',
   whiteList: ['/login', '/404', '/401', '/lock'], // 配置无权限可以访问的页面
   whiteTagList: ['/login', '/404', '/401', '/lock' ], // 配置不添加tags页面 （'/advanced-router/mutative-detail/*'——*为通配符）
   lockPage: '/lock',
   tokenTime: 6000,
-  infoTitle: '秋田集管理后台',
+  infoTitle: '秋田集运营平台',
   statusWhiteList: [428],
   // 配置首页不可关闭
   isFirstPage: false,
